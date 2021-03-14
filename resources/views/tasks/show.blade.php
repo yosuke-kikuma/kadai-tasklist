@@ -6,10 +6,12 @@
     <table class="table table-bordered">
         <tr>
             <th>id</th>
+            <th>text</th>
             <td>{{ $task->id }}</td>
         </tr>
         <tr>
             <th>メッセージ</th>
+            <td>{{ $task->status }}</td>
             <td>{{ $task->content }}</td>
         </tr>
     </table>
