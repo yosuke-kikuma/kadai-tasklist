@@ -36,4 +36,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //Task数をカウントする機能を追加
+   public function loadRelationshipCounts()
+    {
+        $this->loadCount('tasks');
+    }
+    /**
+     * このユーザが所有する投稿。（ Taskモデルとの関係を定義）
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
