@@ -23,16 +23,5 @@
             {!! Form::close() !!}
         </div>
     </div>
-    
-    <div class="media-body">
-        <div>
-    　       @if (Auth::id() == $task->user_id)
-    　　      {{-- 投稿削除ボタンのフォーム --}}
-            {!! Form::open(['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
-                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-            {!! Form::close() !!} 
-            @endif
-        </div>                    
-    </div>
  
 @endsection

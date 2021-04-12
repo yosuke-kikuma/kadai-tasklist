@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Task ;    // 追加
+use App\User ;    // 追加
 
 class TasksController extends Controller
 {
@@ -24,7 +25,6 @@ class TasksController extends Controller
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
 
             $data = [
-            'user' => $user,
             'tasks' => $tasks,
             ];
         }
@@ -79,19 +79,12 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        // idの値でユーザを検索して取得
-        $user = User::findOrFail($id);
-
-        // 関係するモデルの件数をロード
-        $user->loadRelationshipCounts();
-
-        // ユーザの投稿一覧を作成日時の降順で取得
-        $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+       // idの値でユーザを検索して取得
+        $task = Task::findOrFail($id);
 
         // ユーザ詳細ビューでそれらを表示
         return view('tasks.show', [
-            'user' => $user,
-            'tasks' => $tasks,
+            'task' => $task,
         ]);
     }
 
