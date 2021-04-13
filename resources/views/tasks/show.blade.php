@@ -6,7 +6,7 @@
     <table class="table table-bordered">
         <tr>
             <th>id</th>
-            <th>メッセージ</th>
+            <th>タスク</th>
             <th>状況</th>
         </tr>
         <tr>

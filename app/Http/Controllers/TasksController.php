@@ -79,15 +79,20 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-       // idの値でユーザを検索して取得
-        $task = Task::findOrFail($id);
-
-        // ユーザ詳細ビューでそれらを表示
-        return view('tasks.show', [
+    // idの値でメッセージを検索して取得
+    $task = Task::findOrFail($id);
+    
+    // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を表示
+    if (\Auth::id() === $task->user_id) {
+    return view('tasks.show', [
             'task' => $task,
-        ]);
+            ]);
+        }
+    
+    // トップページへリダイレクトさせる
+    return redirect('/');
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,11 +103,16 @@ class TasksController extends Controller
     {
     // idの値でメッセージを検索して取得
     $task = Task::findOrFail($id);
-
-    // メッセージ編集ビューでそれを表示
+    
+    // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を表示
+    if (\Auth::id() === $task->user_id) {
     return view('tasks.edit', [
-    'task' => $task,
-    ]);
+            'task' => $task,
+            ]);
+        }
+    
+    // トップページへリダイレクトさせる
+    return redirect('/');
     }
 
     /**

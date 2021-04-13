@@ -7,7 +7,7 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>メッセージ</th>
+                    <th>タスク</th>
                     <th>状況</th>
                 </tr>
             </thead>
